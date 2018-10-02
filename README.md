@@ -2,6 +2,8 @@
 
 - Very tiny, only use [uWebSocket](https://github.com/uNetworking/uWebSockets) do Micro Service;
 - Client use `ws.dispatch(uri)` call server router files;
+- Eesy extends options in router;
+- Use very fast Log system, use [pino](http://getpino.io/#/);
 - Like Serral in StarCraft2, simple and direct powerful.
 
 ## Look Demo
@@ -138,7 +140,7 @@ ws.onopen = function() {
 };
 ```
 
-## If use mysql or other database
+## Extends: If use mysql or other package
 
 Server:
 
@@ -152,7 +154,7 @@ const { resolve } = require('path');
 const sequelize = new Sequelize('test', 'root', '111Asd', { dialect: 'mysql' });
 sequelize.authenticate();
 
-// send { db: sequelize } to opts; and serral.use() need before serral.load()
+// Extends { db: sequelize } to opts
 serral.use({ db: sequelize });
 serral.load(resolve(__dirname, 'routers'));
 serral.listen(4000);
@@ -161,6 +163,7 @@ serral.listen(4000);
 server/routers/hello.js
 
 ```js
+// sequelize is extends in opts
 module.exports = function(data, ws, opts) {
   console.log(opts); // { db: sequelize }
   // use opts.db do someting
