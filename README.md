@@ -1,7 +1,14 @@
 # Use socket like http
 
+- Only use webSocket do Micro Service;
+- Like Serral in StarCraft2, Simple and direct powerful.
+
+## Install
+
 ```
 npm i --save serral
+# or
+yarn add -D serral
 ```
 
 ## Example
@@ -9,8 +16,9 @@ npm i --save serral
 
 ### Client:
 
+If your use React or Vue, add code in `src/index.js`
+
 ```js
-// if your use React or Vue:
 import serralClient from 'serral/client';
 const ws = serralClient('ws://127.0.0.1:4000');
 ws.onopen = function() {
@@ -68,16 +76,17 @@ This's example:
 
 Server
 
+server/index.js
+
 ```js
-// server/index.js
 const serral = require('serral');
 const path = require('path');
 serral.load(path.resolve(__dirname, 'routers'));
 serral.listen(4000);
 ```
+server/routers/login.js
 
 ```js
-// server/routers/login.js
 module.exports = {
   // In client: ws.dispatch('login.useEmail');
   useEmail: function(data, ws, opts) {
@@ -115,6 +124,8 @@ ws.onopen = function() {
 
 Server:
 
+server/index.js
+
 ```js
 const serral = require('../serve');
 const Sequelize = require('sequelize');
@@ -129,7 +140,7 @@ serral.load(resolve(__dirname, 'routers'));
 serral.listen(4000);
 ```
 
-routers/hello.js
+server/routers/hello.js
 
 ```js
 module.exports = function(data, ws, opts) {
@@ -152,12 +163,6 @@ serral.load(path.resolve(__dirname, 'routers'));
 serral.listen(4000);
 ```
 
-## API setting live
-
-![](.imgs/2018-10-02-22-47-35.png)
-
-> Very sample
-
 ## Use WebSocket change to uWebSockets
 
 serral default use uWebSockets, but it's remove in npm.org. if you need use WebSocket, you can use `lib: 'ws'`:
@@ -169,6 +174,12 @@ serral.use({ lib: 'ws');
 serral.load(path.resolve(__dirname, 'routers'));
 serral.listen(4000);
 ```
+
+## API setting live
+
+![](.imgs/2018-10-02-22-47-35.png)
+
+> Very sample
 
 ## Licenes
 
