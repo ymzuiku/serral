@@ -60,7 +60,7 @@ node server/index.js
 
 Use `serral.load('dir-path')`, serral can audo load files:
 - If file return a `function`, serral use the file name like router path.
-- If file return a {obj}, serral use file.objName.objName... until obj is function
+- If file return a `{ obj }`, serral use file.objName.objName... until obj is function
 - If the 'file' is Directory, serral use require(file/index.js)
 - Ignore underline begins files, like: _xxx.js
 
