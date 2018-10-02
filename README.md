@@ -29,7 +29,7 @@ $ yarn add -D serral
 
 ## Get Started
 
-your can look example/serve.js and example/client.html
+You can look example/serve.js and example/client.html
 
 ### Client:
 
