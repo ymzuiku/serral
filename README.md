@@ -3,6 +3,15 @@
 - Only use webSocket do Micro Service;
 - Like Serral in StarCraft2, Simple and direct powerful.
 
+## Look Demo
+```
+git clone -b master --single-branch https://github.com/ymzuiku/serral
+cd serral
+yarn install && clear
+node example/serve.js & sleep 0.5 && open example/client.html
+```
+Waiting clone git and install npm, If server runing, look Terminal and Browser
+
 ## Install
 
 ```
@@ -11,7 +20,7 @@ npm i --save serral
 yarn add -D serral
 ```
 
-## Example
+## Get Started
 
 
 ### Client:
@@ -64,7 +73,7 @@ Run serve:
 node server/index.js
 ```
 
-## routers load rule:
+## Load routers  rule:
 
 Use `serral.load('dir-path')`, serral can audo load files:
 - If file return a `function`, serral use the file name like router path.

@@ -17,22 +17,23 @@
 </head>
 
 <body>
+  <div id='root'></div>
   <script src="../client/index.js"></script>
   <script>
     var ws = window.__serral('ws://127.0.0.1:4000')
     ws.onopen = function () {
-      ws.dispatch('hello', {
-        name: 'client: hello-server',
-        age: 200
-      }, res => {
-        console.log('catch-server-message1:', res)
-      })
-      ws.dispatch('test', {
-        name: 'client: hello-server2',
-        age: 300
-      }, res => {
-        console.log('catch-server-message2:', res)
-      })
+      setInterval(function () {
+        ws.dispatch('hello', {
+          name: 'client: hello-server',
+          age: 200
+        }, res => {
+          var root = document.getElementById('root')
+          var p = document.createElement('p');
+          p.innerText = JSON.stringify(res);
+          root.appendChild(p);
+          console.log('catch-server-message1:', res)
+        })
+      }, 10)
     }
   </script>
 </body>
