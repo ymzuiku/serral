@@ -154,7 +154,7 @@ serral.listen(4000);
 
 ## API setting live
 
-![](.imgs/2018-10-02-22-42-52.png)
+![](.imgs/2018-10-02-22-47-35.png)
 
 > Very sample
 
