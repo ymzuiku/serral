@@ -1,6 +1,6 @@
 # Use [uWebSockets](https://github.com/uNetworking/uWebSockets) like http-server
 
-- Only use [uWebSocket](https://github.com/uNetworking/uWebSockets) do Micro Service;
+- Very tiny, only use [uWebSocket](https://github.com/uNetworking/uWebSockets) do Micro Service;
 - Client use `ws.dispatch(uri)` call server router files;
 - Like Serral in StarCraft2, simple and direct powerful.
 
