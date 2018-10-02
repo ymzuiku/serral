@@ -1,10 +1,10 @@
 {
   "name": "serral",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "directories": {
     "example": "example"
   },
-  "description": "",
+  "description": "Like Serral in StarCraft2. Only websocket serve,  no http API.",
   "main": "serve/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
