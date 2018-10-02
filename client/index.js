@@ -10,29 +10,32 @@
     var __wsCallback = {};
     var lastTime = 0;
     __ws.dispatch = function(uri, obj, cb, focus) {
-      function send() {
-        if (typeof uri !== 'string') {
-          focus = cb;
-          cb = obj;
-          obj = uri;
-        } else {
-          obj.uri = uri;
-        }
+      if (typeof uri !== 'string') {
+        focus = cb;
+        cb = obj;
+        obj = uri;
+      } else {
+        obj.uri = uri;
+      }
+      var nowTime = Date.now();
+      if (nowTime - lastTime < __spaceTime) {
+        setTimeout(function() {
+          if (cb) {
+            if (__wsCallback[obj.uri] === undefined || focus === true) {
+              __wsCallback[obj.uri] = cb;
+            }
+          }
+          lastTime = Date.now();
+          __ws.send(JSON.stringify(obj));
+        }, nowTime - lastTime);
+      } else {
         if (cb) {
           if (__wsCallback[obj.uri] === undefined || focus === true) {
             __wsCallback[obj.uri] = cb;
           }
         }
-        __ws.send(JSON.stringify(obj));
         lastTime = Date.now();
-      }
-      var nowTime = Date.now();
-      if (nowTime - lastTime < __spaceTime) {
-        setTimeout(function() {
-          send();
-        }, 50);
-      } else {
-        send();
+        __ws.send(JSON.stringify(obj));
       }
     };
     __ws.onmessage = function(msg) {

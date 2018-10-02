@@ -19,7 +19,7 @@
 <body>
   <script src="../client/index.js"></script>
   <script>
-    var ws = window.__mit('ws://127.0.0.1:4000')
+    var ws = window.__serral('ws://127.0.0.1:4000')
     ws.onopen = function () {
       ws.dispatch('hello', {
         name: 'client: hello-server',
