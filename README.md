@@ -1,4 +1,4 @@
-# Use [uWebSockets](https://github.com/uNetworking/uWebSockets) like http-server
+# Use [uWebSockets](https://github.com/uNetworking/uWebSockets) like http-server in Nodejs
 
 - Very tiny, only use [uWebSocket](https://github.com/uNetworking/uWebSockets) do Micro Service;
 - Client use `ws.dispatch(uri)` call server router files;
@@ -8,7 +8,7 @@
 
 ## Look Demo
 
-Copy this code in your Terminal:
+This way is easy run example, juse copy this code in your Terminal:
 
 ```
 git clone -b master --single-branch https://github.com/ymzuiku/serral
