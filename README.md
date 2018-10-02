@@ -186,7 +186,7 @@ serral.listen(4000);
 
 ## Use WebSocket replace to uWebSockets
 
-serral default use uWebSockets, but it's remove in npm.org. serral keep use uws@10.148.1. if you need use WebSocket replace to uWebSockets, you can use `lib: 'ws'`:
+serral default use uWebSockets, but it's remove in npm.org. serral keep use uws@10.148.1. if you need use WebSocket replace to uWebSockets, you can use `lib: 'ws'` :
 
 ```js
 const serral = require('../serve');
