@@ -191,7 +191,7 @@ serral default use uWebSockets, but it's remove in npm.org. serral keep use uws@
 ```js
 const serral = require('../serve');
 const path = require('path');
-serral.use({ lib: 'ws');
+serral.use({ lib: 'ws' });
 serral.load(path.resolve(__dirname, 'routers'));
 serral.listen(4000);
 ```
