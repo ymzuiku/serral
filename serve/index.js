@@ -1,4 +1,3 @@
-// const uws = require('uws');
 const http = require('http');
 const fp = require('./fp');
 const pino = require('pino');
@@ -6,7 +5,7 @@ const os = require('os');
 const server = http.createServer();
 
 let options = {
-  lib: 'uws',
+  lib: '../uws/uws.js',
   isDev: os.platform() === 'win32' || os.platform() === 'darwin' ? true : false,
   log: {
     info: function() {},

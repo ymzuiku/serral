@@ -1,6 +1,9 @@
 {
   "name": "serral",
   "version": "1.1.2",
+  "directories": {
+    "example": "example"
+  },
   "description": "",
   "main": "serve/index.js",
   "scripts": {
@@ -10,7 +13,6 @@
     "fs-extra": "^7.0.0",
     "pino": "^5.6.2",
     "pino-pretty": "^2.2.1",
-    "uws": "10.148.1",
     "ws": "^6.0.0"
   },
   "devDependencies": {
@@ -19,13 +21,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymzuiku/socket-mit.git"
+    "url": "git+https://github.com/ymzuiku/serral.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ymzuiku/socket-mit/issues"
+    "url": "https://github.com/ymzuiku/serral/issues"
   },
-  "homepage": "https://github.com/ymzuiku/socket-mit#readme"
+  "homepage": "https://github.com/ymzuiku/serral#readme"
 }

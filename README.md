@@ -1,7 +1,7 @@
 # Use socket like http
 
 ```
-npm i --save socket-mit
+npm i --save serral
 ```
 
 ## example
@@ -11,7 +11,7 @@ npm i --save socket-mit
 index.js
 
 ```js
-const mit = require('socket-mit');
+const mit = require('serral');
 const path = require('path');
 
 // auto load routers/xxx.js and router/xxx/index.js;
@@ -32,7 +32,7 @@ module.exports = function(data, ws) {
 ### client:
 
 ```js
-const mit = require('socket-mit/client');
+const mit = require('serral/client');
 var ws = mit('ws://127.0.0.1:4000');
 ws.onopen = function() {
   ws.dispatch(
@@ -53,7 +53,7 @@ ws.onopen = function() {
 server
 
 ```js
-const mit = require('socket-mit');
+const mit = require('serral');
 const path = require('path');
 mit.load(path.resolve(__dirname, 'routers'));
 mit.listen(4000);
@@ -132,6 +132,18 @@ const mit = require('../serve');
 const path = require('path');
 
 mit.use({ logPath: path.resolve(__dirname, 'logs') });
-mit.autoLoad(path.resolve(__dirname, 'routers'));
+mit.load(path.resolve(__dirname, 'routers'));
+mit.listen(4000);
+```
+
+## use WebSocket change to uWebSockets
+
+uWebSockets is remove in npm.org, if you need use WebSocket, you can do this:
+
+```js
+const mit = require('../serve');
+const path = require('path');
+mit.use({ lib: 'ws');
+mit.load(path.resolve(__dirname, 'routers'));
 mit.listen(4000);
 ```
