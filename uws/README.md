@@ -1,3 +1,5 @@
+> uws is delete last version in npm.org, this Page is serral's develper copy in serral project and follow uws@10.148.1 -- serral's developer
+
 # UWS IS *NOT* AN ELECTRON MODULE
 `uws` is a replacement module for `ws` which allows, but doesn't guarantee (certainly not when paired with Socket.IO), significant performance and memory-usage improvements. This module is specifically *only* compatible with Node.js and is installed *only* like so:
 
