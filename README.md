@@ -8,7 +8,7 @@
 
 ## Look Demo
 
-This way is easy run example, juse copy this code in your Terminal:
+This way is easy run example, just copy this code in your Terminal:
 
 ```
 git clone -b master --single-branch https://github.com/ymzuiku/serral
@@ -16,7 +16,7 @@ cd serral
 yarn install && clear
 node example/serve.js & sleep 0.5 && open example/client.html
 ```
-Waiting git clone and npm install, if server runing, look Terminal and Browser like this:
+Waiting `git clone` and `npm install` , if server runing, look Terminal and Browser like this:
 
 ![](.imgs/2018-10-02-23-10-37.png)
 
