@@ -6,32 +6,11 @@ npm i --save serral
 
 ## example
 
-### server:
-
-index.js
-
-```js
-const serral = require('serral');
-const path = require('path');
-
-// auto load routers/xxx.js and router/xxx/index.js;
-// ignore underline begins files, like: _xxx.js
-serral.load(path.resolve(__dirname, 'routers'));
-serral.listen(4000);
-```
-
-routers/hello.js
-
-```js
-module.exports = function(data, ws) {
-  console.log(data);
-  ws.dispatch({ name: 'server:hello-client', age: 100 });
-};
-```
 
 ### client:
 
 ```js
+// if your use React or Vue:
 import serralClient from 'serral/client';
 const ws = serralClient('ws://127.0.0.1:4000');
 ws.onopen = function() {
@@ -46,6 +25,35 @@ ws.onopen = function() {
     },
   );
 };
+```
+
+### server:
+
+server/index.js
+
+```js
+const serral = require('serral');
+const path = require('path');
+
+// auto load routers/xxx.js and router/xxx/index.js;
+// ignore underline begins files, like: _xxx.js
+serral.load(path.resolve(__dirname, 'routers'));
+serral.listen(4000);
+```
+
+server/routers/hello.js
+
+```js
+module.exports = function(data, ws) {
+  console.log(data);
+  ws.dispatch({ name: 'server:hello-client', age: 100 });
+};
+```
+
+run serve:
+
+```sh
+node server/index.js
 ```
 
 ## auto some routers
