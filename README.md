@@ -33,7 +33,7 @@ You can look example/serve.js and example/client.html
 
 ### Client:
 
-If your use React or Vue, add code in `src/index.js`
+If you use React or Vue, add code in `src/index.js`
 
 ```js
 import serralClient from 'serral/client';
