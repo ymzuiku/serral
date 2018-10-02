@@ -4,10 +4,10 @@
 npm i --save serral
 ```
 
-## example
+## Example
 
 
-### client:
+### Client:
 
 ```js
 // if your use React or Vue:
@@ -27,7 +27,7 @@ ws.onopen = function() {
 };
 ```
 
-### server:
+### Server:
 
 server/index.js
 
@@ -50,7 +50,7 @@ module.exports = function(data, ws) {
 };
 ```
 
-run serve:
+Run serve:
 
 ```sh
 node server/index.js
@@ -64,9 +64,9 @@ Use `serral.load('dir-path')`, serral can audo load files:
 - If the 'file' is Directory, serral use require(file/index.js)
 - Ignore underline begins files, like: _xxx.js
 
-this's example:
+This's example:
 
-server
+Server
 
 ```js
 // server/index.js
@@ -98,7 +98,7 @@ module.exports = {
 };
 ```
 
-client
+Client
 
 ```js
 import serralClient from 'serral/client';
@@ -111,9 +111,9 @@ ws.onopen = function() {
 };
 ```
 
-## if use mysql or other database
+## If use mysql or other database
 
-server:
+Server:
 
 ```js
 const serral = require('../serve');
@@ -123,7 +123,7 @@ const { resolve } = require('path');
 const sequelize = new Sequelize('test', 'root', '111Asd', { dialect: 'mysql' });
 sequelize.authenticate();
 
-// send { db: sequelize } to opts
+// send { db: sequelize } to opts; and serral.use() need before serral.load()
 serral.use({ db: sequelize });
 serral.load(resolve(__dirname, 'routers'));
 serral.listen(4000);
@@ -138,22 +138,29 @@ module.exports = function(data, ws, opts) {
 };
 ```
 
-## use local log files
+## Use local log files
 
-set `logPath`, log save in local file, use [pino](https://github.com/pinojs/pino)
+Set `logPath`, log save in local file, use [pino](https://github.com/pinojs/pino)
 
 ```js
 const serral = require('../serve');
 const path = require('path');
 
+// serral.use() need before serral.load()
 serral.use({ logPath: path.resolve(__dirname, 'logs') });
 serral.load(path.resolve(__dirname, 'routers'));
 serral.listen(4000);
 ```
 
-## use WebSocket change to uWebSockets
+## API setting live
 
-uWebSockets is remove in npm.org, if you need use WebSocket, you can do this:
+![](.imgs/2018-10-02-22-42-52.png)
+
+> Very sample
+
+## Use WebSocket change to uWebSockets
+
+serral default use uWebSockets, but it's remove in npm.org. if you need use WebSocket, you can use `lib: 'ws'`:
 
 ```js
 const serral = require('../serve');
