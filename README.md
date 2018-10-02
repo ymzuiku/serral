@@ -1,4 +1,4 @@
-# Use socket like http
+# Use uWebSockets like http
 
 - Only use webSocket do Micro Service;
 - Like Serral in StarCraft2, Simple and direct powerful.
