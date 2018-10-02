@@ -173,7 +173,7 @@ module.exports = function(data, ws, opts) {
 
 ## Use local log files
 
-Set `logPath`, log save in local file, use [pino](https://github.com/pinojs/pino)
+If you set `logPath`, log save in local file, use [pino](https://github.com/pinojs/pino)
 
 ```js
 const serral = require('../serve');
