@@ -10,7 +10,11 @@ cd serral
 yarn install && clear
 node example/serve.js & sleep 0.5 && open example/client.html
 ```
-Waiting clone git and install npm, If server runing, look Terminal and Browser
+Waiting clone git and install npm, If server runing, look Terminal and Browser.
+
+![](.imgs/2018-10-02-23-10-37.png)
+
+The Web is at 30ms emit socket server;
 
 ## Install
 
@@ -22,6 +26,7 @@ yarn add -D serral
 
 ## Get Started
 
+your can look example/serve.js and example/client.html
 
 ### Client:
 
