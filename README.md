@@ -156,6 +156,7 @@ sequelize.authenticate();
 
 // Extends { db: sequelize } to opts
 serral.use({ db: sequelize });
+// serral.use() need before serral.load()
 serral.load(resolve(__dirname, 'routers'));
 serral.listen(4000);
 ```
@@ -178,8 +179,9 @@ Set `logPath`, log save in local file, use [pino](https://github.com/pinojs/pino
 const serral = require('../serve');
 const path = require('path');
 
-// serral.use() need before serral.load()
+// need ensure the existence of logPath
 serral.use({ logPath: path.resolve(__dirname, 'logs') });
+// serral.use() need before serral.load()
 serral.load(path.resolve(__dirname, 'routers'));
 serral.listen(4000);
 ```
