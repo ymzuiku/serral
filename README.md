@@ -16,7 +16,7 @@ cd serral
 yarn install && clear
 node example/serve.js & sleep 0.5 && open example/client.html
 ```
-Waiting git clone and npm install, if server runing, look Terminal and Browser.
+Waiting git clone and npm install, if server runing, look Terminal and Browser like this:
 
 ![](.imgs/2018-10-02-23-10-37.png)
 
