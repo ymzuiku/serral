@@ -1,7 +1,7 @@
 # Use [uWebSockets](https://github.com/uNetworking/uWebSockets) like http
 
 - Only use [uWebSocket](https://github.com/uNetworking/uWebSockets) do Micro Service;
-- Like Serral in StarCraft2, Simple and direct powerful.
+- Like Serral in StarCraft2, simple and direct powerful.
 
 ## Look Demo
 
