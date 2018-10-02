@@ -56,11 +56,20 @@ run serve:
 node server/index.js
 ```
 
-## auto some routers
+## routers load rule:
+
+Use `serral.load('dir-path')`, serral can audo load files:
+- If file return a `function`, serral use the file name like router path.
+- If file return a {obj}, serral use file.objName.objName... until obj is function
+- If the 'file' is Directory, serral use require(file/index.js)
+- Ignore underline begins files, like: _xxx.js
+
+this's example:
 
 server
 
 ```js
+// server/index.js
 const serral = require('serral');
 const path = require('path');
 serral.load(path.resolve(__dirname, 'routers'));
@@ -68,23 +77,20 @@ serral.listen(4000);
 ```
 
 ```js
-// routers/login.js
+// server/routers/login.js
 module.exports = {
+  // In client: ws.dispatch('login.useEmail');
   useEmail: function(data, ws, opts) {
     // ..
   },
-  usePhone: function(data, ws, opts) {
-    // ..
-  },
   sendEmail: {
+    // In client: ws.dispatch('login.sendEmail.changePassword');
     changePassword: function(data, ws, opts) {
       // ..
     },
     bindEmail: {
+      // In client: ws.dispatch('login.sendEmail.bindEmail.bindNow');
       bindNow: function(data, ws, opts) {
-        // ..
-      },
-      bindNextDay: function(data, ws, opts) {
         // ..
       },
     },
