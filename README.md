@@ -2,7 +2,7 @@
 
 - Very tiny, only use [uWebSocket](https://github.com/uNetworking/uWebSockets) do Micro Service;
 - Client use `ws.dispatch(uri)` call server router files;
-- Eesy extends options in router;
+- Easy extends options in router;
 - Use very fast Log system, use [pino](http://getpino.io/#/);
 - Like Serral in StarCraft2, simple and direct powerful.
 
