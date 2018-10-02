@@ -2,7 +2,7 @@
   if (typeof WebSocket === 'undefined') {
     console.error('socket-mit: Browser no have WebSocket');
   }
-  function __mit(url, options) {
+  function __serral(url, options) {
     options = options || {};
     var __spaceTime = options.spaceTime === undefined ? 50 : options.spaceTime;
     var __log = options.log === undefined ? true : options.log;
@@ -59,8 +59,8 @@
     };
     return __ws;
   }
-  window.__mit = __mit;
+  window.__serral = __serral;
   if (typeof module !== 'undefined') {
-    module.exports = __mit;
+    module.exports = __serral;
   }
 })();

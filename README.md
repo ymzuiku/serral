@@ -11,13 +11,13 @@ npm i --save serral
 index.js
 
 ```js
-const mit = require('serral');
+const serral = require('serral');
 const path = require('path');
 
 // auto load routers/xxx.js and router/xxx/index.js;
 // ignore underline begins files, like: _xxx.js
-mit.load(path.resolve(__dirname, 'routers'));
-mit.listen(4000);
+serral.load(path.resolve(__dirname, 'routers'));
+serral.listen(4000);
 ```
 
 routers/hello.js
@@ -32,8 +32,8 @@ module.exports = function(data, ws) {
 ### client:
 
 ```js
-const mit = require('serral/client');
-var ws = mit('ws://127.0.0.1:4000');
+import serralClient from 'serral/client';
+const ws = serralClient('ws://127.0.0.1:4000');
 ws.onopen = function() {
   ws.dispatch(
     'hello',
@@ -53,10 +53,10 @@ ws.onopen = function() {
 server
 
 ```js
-const mit = require('serral');
+const serral = require('serral');
 const path = require('path');
-mit.load(path.resolve(__dirname, 'routers'));
-mit.listen(4000);
+serral.load(path.resolve(__dirname, 'routers'));
+serral.listen(4000);
 ```
 
 ```js
@@ -87,7 +87,8 @@ module.exports = {
 client
 
 ```js
-var ws = mit('ws://127.0.0.1:4000');
+import serralClient from 'serral/client';
+const ws = serralClient('ws://127.0.0.1:4000');
 ws.onopen = function() {
   // load server routers/login.js function
   ws.dispatch('login.useEmail');
@@ -101,7 +102,7 @@ ws.onopen = function() {
 server:
 
 ```js
-const mit = require('../serve');
+const serral = require('../serve');
 const Sequelize = require('sequelize');
 const { resolve } = require('path');
 
@@ -109,9 +110,9 @@ const sequelize = new Sequelize('test', 'root', '111Asd', { dialect: 'mysql' });
 sequelize.authenticate();
 
 // send { db: sequelize } to opts
-mit.use({ db: sequelize });
-mit.load(resolve(__dirname, 'routers'));
-mit.listen(4000);
+serral.use({ db: sequelize });
+serral.load(resolve(__dirname, 'routers'));
+serral.listen(4000);
 ```
 
 routers/hello.js
@@ -128,12 +129,12 @@ module.exports = function(data, ws, opts) {
 set `logPath`, log save in local file, use [pino](https://github.com/pinojs/pino)
 
 ```js
-const mit = require('../serve');
+const serral = require('../serve');
 const path = require('path');
 
-mit.use({ logPath: path.resolve(__dirname, 'logs') });
-mit.load(path.resolve(__dirname, 'routers'));
-mit.listen(4000);
+serral.use({ logPath: path.resolve(__dirname, 'logs') });
+serral.load(path.resolve(__dirname, 'routers'));
+serral.listen(4000);
 ```
 
 ## use WebSocket change to uWebSockets
@@ -141,11 +142,11 @@ mit.listen(4000);
 uWebSockets is remove in npm.org, if you need use WebSocket, you can do this:
 
 ```js
-const mit = require('../serve');
+const serral = require('../serve');
 const path = require('path');
-mit.use({ lib: 'ws');
-mit.load(path.resolve(__dirname, 'routers'));
-mit.listen(4000);
+serral.use({ lib: 'ws');
+serral.load(path.resolve(__dirname, 'routers'));
+serral.listen(4000);
 ```
 
 ## Licenes

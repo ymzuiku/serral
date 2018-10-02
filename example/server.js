@@ -1,5 +1,5 @@
-const mit = require('../serve');
+const serral = require('../serve');
 const { resolve } = require('path');
 
-mit.load(resolve(__dirname, 'routers'));
-mit.listen(4000);
+serral.load(resolve(__dirname, 'routers'));
+serral.listen(4000);
