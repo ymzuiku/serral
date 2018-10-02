@@ -4,13 +4,16 @@
 - Like Serral in StarCraft2, Simple and direct powerful.
 
 ## Look Demo
+
+Copy this code in your Terminal:
+
 ```
 git clone -b master --single-branch https://github.com/ymzuiku/serral
 cd serral
 yarn install && clear
 node example/serve.js & sleep 0.5 && open example/client.html
 ```
-Waiting clone git and install npm, If server runing, look Terminal and Browser.
+Waiting git clone and npm install, if server runing, look Terminal and Browser.
 
 ![](.imgs/2018-10-02-23-10-37.png)
 
@@ -19,9 +22,9 @@ The Web is at 30ms emit socket server;
 ## Install
 
 ```
-npm i --save serral
+$ npm i --save serral
 # or
-yarn add -D serral
+$ yarn add -D serral
 ```
 
 ## Get Started
@@ -193,7 +196,6 @@ serral.listen(4000);
 
 ![](.imgs/2018-10-02-22-47-35.png)
 
-> Very sample
 
 ## Licenes
 
