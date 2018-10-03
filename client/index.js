@@ -56,7 +56,7 @@
       } else {
         // eslint-disable-next-line
         if (__log) {
-          console.warn('serral: data.url is undifine', data);
+          console.warn('serral: data.uri is undifine', data);
         }
       }
     };
