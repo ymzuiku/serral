@@ -45,7 +45,7 @@
       } catch (err) {
         if (__log) {
           // eslint-disable-next-line
-          console.error(`mit: can't JSON.parse: ` + msg);
+          console.error(`serral: can't JSON.parse: ` + msg);
         }
       }
       if (data && data.uri) {
@@ -56,7 +56,7 @@
       } else {
         // eslint-disable-next-line
         if (__log) {
-          console.warn('mit: data.url is undifine', data);
+          console.warn('serral: data.url is undifine', data);
         }
       }
     };
