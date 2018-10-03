@@ -38,7 +38,6 @@
           });
         } else if (__ws.readyState == 3) {
           __ws = __serral(url, options);
-          console.log(__ws);
           __ws.onopen = function() {
             __ws.send(JSON.stringify(obj));
           };
