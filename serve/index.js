@@ -32,7 +32,7 @@ function use(opts = options) {
 
 function load(routerPath, opts = options) {
   opts = { ...options, ...opts };
-  const WS = require(opts.lib)
+  const WS = require(opts.lib);
   const ws = new WS.Server({
     server,
   });
@@ -56,19 +56,30 @@ function load(routerPath, opts = options) {
       try {
         data = JSON.parse(msg);
       } catch (err) {
-        console.error('mit: msg no json ', msg);
+        console.error('serral: msg no json ', msg);
+        socket.send(
+          JSON.stringify({ err: 'msg no json', msg }),
+        );
       }
       socket.dispatch = function(obj) {
         obj.uri = data.uri;
         socket.send(JSON.stringify(obj));
       };
-      if (data && data.uri && socketFns[data.uri]) {
-        if (opts.isLog) {
-          opts.log.info(data);
+      if (data && data.uri) {
+        if (socketFns[data.uri]) {
+          if (opts.isLog) {
+            opts.log.info(data);
+          }
+          socketFns[data.uri](data, socket, opts);
+        } else {
+          console.log('serral: uri is undifine', msg);
+          socket.dispatch({ err: 'serral: uri is undifine', msg });
         }
-        socketFns[data.uri](data, socket, opts);
       } else {
-        console.log('mit: no have socket router in', msg);
+        console.log('serral: no have socket router in', msg);
+        socket.send(
+          JSON.stringify({ err: 'serral: no have socket router in', msg }),
+        );
       }
     });
   });
