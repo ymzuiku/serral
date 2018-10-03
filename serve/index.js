@@ -57,7 +57,7 @@ function load(routerPath, opts = options) {
         data = JSON.parse(msg);
       } catch (err) {
         opts.log.warn('serral: msg no json ', msg);
-        socket.send(JSON.stringify({ err: 'msg no json', clientMsg: msg }));
+        socket.send(JSON.stringify({ error: 'msg no json', clientMsg: msg }));
       }
       socket.dispatch = function(obj) {
         obj.uri = data.uri;
@@ -71,12 +71,12 @@ function load(routerPath, opts = options) {
           socketFns[data.uri](data, socket, opts);
         } else {
           opts.log.warn('serral: uri is undifine', msg);
-          socket.dispatch({ err: 'serral: uri is undifine', clientMsg: msg });
+          socket.dispatch({ error: 'serral: uri is undifine', clientMsg: msg });
         }
       } else {
         opts.log.warn('serral: no have socket router in', msg);
         socket.send(
-          JSON.stringify({ err: 'serral: no have socket router in', msg }),
+          JSON.stringify({ error: 'serral: no have socket router in', msg }),
         );
       }
     });
