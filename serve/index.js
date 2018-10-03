@@ -62,6 +62,7 @@ function load(routerPath, opts = options) {
       }
       socket.dispatch = function(obj) {
         obj.uri = data.uri;
+        console.log('-- ', obj);
         socket.send(JSON.stringify(obj));
       };
       if (data && data.uri) {

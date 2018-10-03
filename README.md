@@ -4,6 +4,8 @@
 - Client use `ws.dispatch(uri)` call server router files;
 - Easy extends options in router;
 - Use very fast Log system, use [pino](http://getpino.io/#/);
+- Auto reconnet WebSocket;
+- Long time auto close WebSocket;
 - Like Serral in StarCraft2, simple and direct powerful.
 
 ## Look Demo
