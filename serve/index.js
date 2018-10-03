@@ -58,6 +58,7 @@ function load(routerPath, opts = options) {
       } catch (err) {
         opts.log.warn('serral: msg no json ', msg);
         socket.send(JSON.stringify({ error: 'msg no json', clientMsg: msg }));
+        return;
       }
       socket.dispatch = function(obj) {
         obj.uri = data.uri;
