@@ -2,12 +2,12 @@
   if (typeof WebSocket === 'undefined') {
     console.error('socket-mit: Browser no have WebSocket');
   }
+  var __wsCallback = {};
   function __serral(url, options) {
     options = options || {};
     var __spaceTime = options.spaceTime === undefined ? 50 : options.spaceTime;
     var __log = options.log === undefined ? true : options.log;
     var __ws = new WebSocket(url);
-    var __wsCallback = {};
     var lastTime = 0;
     __ws.dispatch = function(uri, obj, cb, focus) {
       if (typeof uri !== 'string') {
@@ -17,26 +17,53 @@
       } else {
         obj.uri = uri;
       }
-      var nowTime = Date.now();
-      if (nowTime - lastTime < __spaceTime) {
-        setTimeout(function() {
-          if (cb) {
-            if (__wsCallback[obj.uri] === undefined || focus === true) {
-              __wsCallback[obj.uri] = cb;
-            }
-          }
-          lastTime = Date.now();
-          __ws.send(JSON.stringify(obj));
-        }, nowTime - lastTime);
-      } else {
+      function send() {
         if (cb) {
           if (__wsCallback[obj.uri] === undefined || focus === true) {
             __wsCallback[obj.uri] = cb;
           }
         }
+        if (__ws.readyState == 0) {
+          __ws.onopen = function() {
+            __ws.send(JSON.stringify(obj));
+          };
+        } else if (__ws.readyState == 1) {
+          __ws.send(JSON.stringify(obj));
+        } else if (__ws.readyState == 2) {
+          setTimeout(() => {
+            __ws = __serral(url, options);
+            __ws.onopen = function() {
+              __ws.send(JSON.stringify(obj));
+            };
+          });
+        } else if (__ws.readyState == 3) {
+          __ws = __serral(url, options);
+          console.log(__ws);
+          __ws.onopen = function() {
+            __ws.send(JSON.stringify(obj));
+          };
+        } else {
+          console.error('serral: socket readyState is Error');
+        }
         lastTime = Date.now();
-        __ws.send(JSON.stringify(obj));
       }
+      var nowTime = Date.now();
+      if (nowTime - lastTime < __spaceTime) {
+        setTimeout(function() {
+          send();
+        }, nowTime - lastTime);
+      } else {
+        send();
+      }
+    };
+    __ws.onopen = function(event) {
+      console.log('onopen:', event);
+    };
+    __ws.onerror = function(event) {
+      console.warn('serral-error:', event);
+    };
+    __ws.onclose = function(event) {
+      console.log('onclose:', event);
     };
     __ws.onmessage = function(msg) {
       var data;
