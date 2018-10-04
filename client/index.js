@@ -86,6 +86,9 @@
           console.error(`serral: can't JSON.parse: ` + msg);
         }
       }
+      if (ws.onserral) {
+        ws.onserral(data, msg);
+      }
       if (data && data.uri) {
         if (wsCallback[data.uri]) {
           wsCallback[data.uri](data);
