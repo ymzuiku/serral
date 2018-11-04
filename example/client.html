@@ -23,7 +23,7 @@
     var ws = window.__serral('ws://127.0.0.1:4000')
     ws.onopen = function () {
       setInterval(function () {
-        ws.dispatch('hello', {
+        ws.fetch('hello', {
           name: 'client: hello-server',
           age: 200
         }, res => {
