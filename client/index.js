@@ -10,13 +10,14 @@
       options.autoCloseTime === undefined ? 300000 : options.autoCloseTime;
     var isLog = options.log === undefined ? true : options.log;
     var ws = new WebSocket(url);
+    console.log(ws);
     var lastTime = 0;
     var autoCloser = setInterval(function() {
       if (Date.now() - lastTime > autoCloseTime) {
         ws.close();
       }
     }, autoCloseTime);
-    ws.dispatch = function(uri, obj, cb, focus) {
+    ws.fetch = function(uri, obj, cb, focus) {
       if (typeof uri !== 'string') {
         focus = cb;
         cb = obj;

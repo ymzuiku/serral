@@ -51,6 +51,9 @@ function load(routerPath, opts = options) {
   const socketFns = fp.flattenToMap(fp.loadDir(routerPath));
   opts.log.info('mit-functions:', socketFns);
   ws.on('connection', socket => {
+    socket.json = function(obj) {
+      socket.send(JSON.stringify(obj));
+    };
     socket.on('message', msg => {
       let data;
       try {
@@ -60,11 +63,6 @@ function load(routerPath, opts = options) {
         socket.send(JSON.stringify({ error: 'msg no json', clientMsg: msg }));
         return;
       }
-      socket.dispatch = function(obj) {
-        obj.uri = data.uri;
-        console.log('-- ', obj);
-        socket.send(JSON.stringify(obj));
-      };
       if (data && data.uri) {
         if (socketFns[data.uri]) {
           if (opts.isLog) {
@@ -73,7 +71,7 @@ function load(routerPath, opts = options) {
           socketFns[data.uri](data, socket, opts);
         } else {
           opts.log.warn('serral: uri is undifine', msg);
-          socket.dispatch({ error: 'serral: uri is undifine', clientMsg: msg });
+          socket.json({ error: 'serral: uri is undifine', clientMsg: msg });
         }
       } else {
         opts.log.warn('serral: no have socket router in', msg);

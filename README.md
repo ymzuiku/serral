@@ -1,7 +1,7 @@
 # Use [uWebSockets](https://github.com/uNetworking/uWebSockets) like http-server in Nodejs
 
 - Very tiny, only use [uWebSocket](https://github.com/uNetworking/uWebSockets) do Micro Service;
-- Client use `ws.dispatch(uri)` call server router files;
+- Client use `ws.fetch(uri)` call server router files;
 - Easy extends options in router;
 - Use very fast Log system, use [pino](http://getpino.io/#/);
 - Auto reconnet WebSocket;
@@ -36,7 +36,7 @@ $ yarn add -D serral
 
 You can look example/serve.js and example/client.html
 
-### Client:
+### In client:
 
 If you use React or Vue, add code in `src/index.js`
 
@@ -44,7 +44,7 @@ If you use React or Vue, add code in `src/index.js`
 import serralClient from 'serral/client';
 const ws = serralClient('ws://127.0.0.1:4000');
 ws.onopen = function() {
-  ws.dispatch(
+  ws.fetch(
     'hello',
     {
       name: 'client: hello-server',
@@ -57,7 +57,7 @@ ws.onopen = function() {
 };
 ```
 
-### Server:
+### In server:
 
 server/index.js
 
@@ -76,7 +76,8 @@ server/routers/hello.js
 ```js
 module.exports = function(data, ws) {
   console.log(data);
-  ws.dispatch({ name: 'server:hello-client', age: 100 });
+  // if set uri, client can run wsCallback[uri] function
+  ws.emit({ uri:data.uri, name: 'server:hello-client', age: 100 });
 };
 ```
 
@@ -110,19 +111,19 @@ server/routers/login.js
 
 ```js
 module.exports = {
-  // In client: ws.dispatch('login.useEmail');
+  // In client: ws.fetch('login.useEmail');
   useEmail: function(data, ws, opts) {
-    // ..
+    // ws.json({ uri:data.uri, ...})
   },
   sendEmail: {
-    // In client: ws.dispatch('login.sendEmail.changePassword');
+    // In client: ws.fetch('login.sendEmail.changePassword');
     changePassword: function(data, ws, opts) {
-      // ..
+      // ws.json({ uri:data.uri, ...})
     },
     bindEmail: {
-      // In client: ws.dispatch('login.sendEmail.bindEmail.bindNow');
+      // In client: ws.fetch('login.sendEmail.bindEmail.bindNow');
       bindNow: function(data, ws, opts) {
-        // ..
+        // ws.json({ uri:data.uri, ...})
       },
     },
   },
@@ -136,9 +137,9 @@ import serralClient from 'serral/client';
 const ws = serralClient('ws://127.0.0.1:4000');
 ws.onopen = function() {
   // load server routers/login.js function
-  ws.dispatch('login.useEmail');
-  ws.dispatch('login.sendEmail.changePassword');
-  ws.dispatch('login.sendEmail.bindEmail.bindNow');
+  ws.fetch('login.useEmail');
+  ws.fetch('login.sendEmail.changePassword');
+  ws.fetch('login.sendEmail.bindEmail.bindNow');
 };
 ```
 
